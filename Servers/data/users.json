@@ -1,0 +1,42 @@
+[
+    {
+        "username": "M FAADHIL HUSSAENI",
+        "email": "husenYahusen@email.com",
+        "password": "HusenTampan",
+        "gender": "Pria",
+        "role": "admin"
+        
+    },
+    {
+        "username": "Ricky Givano",
+        "email": "Ricky@email.com",
+        "password": "Tampandanberani",
+        "gender": "Pria",
+        "role": "member"
+        
+    },
+    {
+        "username": "Ilhame nopi hendri",
+        "email": "ilhamsangchaya@email.com",
+        "password": "apaitu",
+        "gender": "Pria",
+        "role": "member"
+        
+    },
+    {
+        "username": "Via Alfriansih",
+        "email": "Viaaaaaa@email.com",
+        "password": "viaBau",
+        "gender": "Perempuan",
+        "role": "admin"
+        
+    },
+    {
+        "username": "collei x amber",
+        "email": "cocolduluguys@email.com",
+        "password": "auahbau",
+        "gender": "Perempuan",
+        "role": "member"
+        
+    }
+]

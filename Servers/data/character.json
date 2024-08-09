@@ -1,0 +1,101 @@
+[
+    {
+        "name": "Link",
+        "gender":"Male",
+        "gameName": "The Legend Of Zelda",
+        "gameId": 1,
+        "description":"Link is the main character and protagonist of the The Legend of Zelda series. He has appeared across many incarnations throughout the series, which, depending on the game, depicted as an ordinary boy or young man, who becomes a legendary hero by saving the world through feats of courage. He is most often the holder of the Triforce of Courage, a sign of his being chosen by the Golden Goddesses. As a highly skilled swordsman, Link is almost always seen wielding a sword and shield, usually the Master Sword and Hylian Shield. Specific incarnations of Link may be distinguished by titles such as the iconic Hero of Time in Ocarina of Time and the Hero of Winds in The Wind Waker.",
+        "imgUrl": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/1/15/TotK_Link_Artwork.png/revision/latest?cb=20240221141140",
+        "skill": "the master Swordman",
+        "weapon":"Master Sword % hylian Shield",
+        "userId": 1 
+    },
+    {
+        "name": "Dante",
+        "gender":"Male",
+        "gameName": "Devil May Cry",
+        "gameId": 2,
+        "description":"Dante is one of the main protagonists of the Devil May Cry franchise, and the main playable character for the majority of the games in the series. He is the second son of the demon Sparda and the human Eva, the younger twin brother of Vergil, and the uncle of Nero.",
+        "imgUrl": "https://static.wikia.nocookie.net/devilmaycry/images/c/c2/Dante_DMC5.png/revision/latest/scale-to-width-down/1000?cb=20180922220047",
+        "skill": "The Devil Hunter Killer & pizza",
+        "weapon":"Rebelion",
+        "userId": 2
+    },
+    {
+        "name": "Nathan Drake",
+        "gender":"Male",
+        "gameName": "Uncharted Series",
+        "gameId": 3,
+        "description":"Nathan `Nate` Drake (born Nathan Morgan) is the main protagonist of the Uncharted franchise. In the video game series, he is the central character and playable protagonist. A professional treasure hunter, Nate is described as a `deep-sea salvage expert and action-pro` with a knack for surviving by the skin of his teeth. Known for being quick-witted in the face of danger, Nate possesses a deep knowledge of history, having spent most of his life studying it.",
+        "imgUrl": "https://static.wikia.nocookie.net/uncharted/images/e/e1/Nathan_Drake_from_ATE_headshot.png/revision/latest?cb=20221025141033",
+        "skill": "rock climbing, extreme exploration, dangerous challenges",
+        "weapon":"Pistol",
+        "userId": 1
+    },
+    {
+        "name": "Ada Wong",
+        "gender":"female",
+        "gameName": "Resident Evil",
+        "gameId": 4,
+        "description":"Ada Wong (エイダ・ウォン Eida Won?) is the pseudonym of an enigmatic unnamed spy of Asian-American descent. She has gained notoriety in the corporate world for being able to handle serious situations and the most difficult requests without guilt.",
+        "imgUrl": "https://static.wikia.nocookie.net/residentevil/images/5/5c/Ada_Wong_RE6.jpg/revision/latest?cb=20120612001402",
+        "skill": "double agent, gun accuracy, and acrobatics",
+        "weapon":"pistol & crossbow",
+        "userId": 3
+    },
+    {
+        "name": "Yae Miko",
+        "gender":"female",
+        "gameName": "Genshin Impact",
+        "gameId": 5,
+        "description":"ae Miko[Note 1] (Japanese: 八や重え神み子こ Yae Miko), also known as Guuji Yae (Japanese: 宮ぐう司じ Guuji) or the Guuji, is a playable Electro character in Genshin Impact. A kitsune of many facets, Yae Miko oversees the Grand Narukami Shrine, owns the Yae Publishing House, and is Eternity's servant and friend.",
+        "imgUrl": "https://static.wikia.nocookie.net/gensin-impact/images/4/49/Character_Yae_Miko_Full_Wish.png/revision/latest/scale-to-width-down/1000?cb=20240525000642",
+        "skill": "jugon jogun misuyo",
+        "weapon":"catalyst",
+        "userId": 3
+    },
+    {
+        "name": "Shadow the hedgehog",
+        "gender":"Male",
+        "gameName": "Sonic The Hendgehog",
+        "gameId": 6,
+        "description":"Shadow the Hedgehog (シャドウ・ザ・ヘッジホッグ Shadō za Hejjihoggu?) is a character that appears in the Sonic the Hedgehog series. He is an anthropomorphic hedgehog/Black Arms hybrid who resembles Sonic the Hedgehog in many ways[8] and serves as his arch-rival and occasional ally. Shadow was created as the Ultimate Life Form (究極生命体 Kyūkyoku Seimeitai?) by Prof. Gerald Robotnik by using the DNA of Black Doom and is the final result of Project Shadow. His purpose was to provide ways to develop a cure for incurable deadly illnesses, more specifically for Gerald's granddaughter Maria Robotnik, who he had a great bond with. However, he was eventually captured following his creation and put into stasis by G.U.N. when he was deemed as a threat to humanity.",
+        "imgUrl": "https://static.wikia.nocookie.net/sonic/images/3/31/SXSG_art_Shadow_04.png/revision/latest?cb=20240707210219",
+        "skill": "Chaos COntrol, spin attack, homming attack",
+        "weapon":"Gloves",
+        "userId": 2
+    },
+    {
+        "name": "Silver Wolf",
+        "gender":"female",
+        "gameName": "Honkai Star Rail",
+        "gameId": 7,
+        "description":"A member of the Stellaron Hunters and a genius hacker. Silver Wolf has mastered the skill known as aether editing, which can be used to tamper with the data of reality. Hence, she always views the universe as a massive immersive simulation game and is eager to clear the stages awaiting ahead.",
+        "imgUrl": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/60/Character_Silver_Wolf_Splash_Art.png/revision/latest?cb=20230216230911",
+        "skill": "Hacking & gamers",
+        "weapon":"Gun & Sword Pixel",
+        "userId": 1
+    },
+    {
+        "name": "Ezio Auditore",
+        "gender":"Male",
+        "gameName": "Assissin Creed",
+        "gameId": 9,
+        "description":"Ezio Auditore da Firenze (1459 – 1524) was a Florentine nobleman during the Renaissance, and, unbeknownst to most historians and philosophers, a Master Assassin and the Mentor of the Italian Brotherhood of Assassins, a title which he held from 1503 to 1513. He is also an ancestor of William and Desmond Miles, as well as Clay Kaczmarek.",
+        "imgUrl": "https://static.wikia.nocookie.net/assassinscreed/images/6/66/ACI-Ezio.png/revision/latest?cb=20131014134656",
+        "skill": "hiding, parkour, free fall from the roof of the house",
+        "weapon":"Hidden blade",
+        "userId": 4
+    },
+    {
+        "name": "Changli",
+        "gender":"female",
+        "gameName": "Whutering Wave",
+        "gameId": 8,
+        "description":"Changli (Chinese: 长离) is a playable Fusion Natural Resonator in Wuthering Waves.She is the Former Secretary-General of the Central Secretariat in the capital, and now serves as Counselor to the Jinzhou Magistrate.",
+        "imgUrl": "https://static.wikia.nocookie.net/wutheringwaves/images/d/d2/Changli_Full_Sprite.png/revision/latest/scale-to-width-down/1000?cb=20240723101836",
+        "skill": "phoenix fire",
+        "weapon":"Sword",
+        "userId": 1
+    }
+]
