@@ -77,7 +77,7 @@ export default function CharactersForm({ url }) {
 
   return (
     <>
-      <CharacterForm url={url} handlesubmit={handleSubmit} nameprop="Add Character" />
+      <CharacterForm url={url} handleSubmit={handleSubmit} nameprop="Add Character" />
     </>
   );
 }
