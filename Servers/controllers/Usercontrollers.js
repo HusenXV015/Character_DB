@@ -46,35 +46,38 @@ class usercontroller {
             next(err)
         }
     }
-    static async googleLogin(req, res, next) {
+    static async googleAuth(req, res, next) {
         try {
-            const { token } = req.headers
-            const client = new OAuth2Client();
-
-            const ticket = await client.verifyIdToken({
-                idToken: token,
-                audience: process.env.GOOGLE_CLIENT_ID,
-            });
-
-            const payload = ticket.getPayload();
-
-            const [user, created] = await User.findOrCreate({
-                where: {
-                    username: payload.email
-                },
-                defaults: {
-                    username: payload.email,
-                    password: "password_google"
-                },
-                hooks: false
-            })
-
-            const access_token = createToken({
-                id: user.id,
-                username: user.username,
-            })
-
-            res.status(200).json({ access_token })
+          const { token } = req.headers
+          const client = new OAuth2Client();
+    
+          const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: "635959090114-fqa24kd73k2vbdnt134qq3g1ohuspkm0.apps.googleusercontent.com"
+          })
+    
+          const payload = ticket.getPayload()
+          console.log(payload);
+    
+          const [user, created] = await User.findOrCreate({
+            where: {
+              username: payload.email
+            },
+            defaults: {
+              username: payload.email,
+              email: payload.email,
+              password: "password_google"
+            },
+            hooks: false
+          })
+    
+          const access_token = signToken({
+            id: user.id,
+            username: user.username,
+            email: user.email
+          })
+    
+          res.status(200).json({ access_token })
         } catch (err) {
             console.log(err);
             next(err)

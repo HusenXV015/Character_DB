@@ -64,7 +64,7 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
       </h2>
       <form
         onSubmit={(e) =>
-          handleSubmit(e, name, gender, gameName, gameId, description, imgUrl, skill, weapon)
+          handleSubmit(e, name, gender, gameName, +gameId, description, imgUrl, skill, weapon)
         }
       >
         <div className="mb-4">
@@ -76,7 +76,6 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="name"
-            placeholder="Enter your name"
             value={name}
           />
         </div>
@@ -89,7 +88,6 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="gender"
-            placeholder="Enter your gender"
             value={gender}
           />
         </div>
@@ -102,7 +100,6 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="gameName"
-            placeholder="Enter the game name"
             value={gameName}
           />
         </div>
@@ -114,20 +111,18 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             onChange={(e) => setDescription(e.target.value)}
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             id="description"
-            placeholder="Enter description"
             value={description}
           ></textarea>
         </div>
         <div className="mb-4">
           <label className="block text-muted-foreground mb-2">
-            Image (URL):
+            Image URL:
           </label>
           <input
             onChange={(e) => setImgUrl(e.target.value)}
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="imgUrl"
-            placeholder="Enter image URL"
             value={imgUrl}
           />
         </div>
@@ -140,7 +135,6 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="weapon"
-            placeholder="Enter weapon"
             value={weapon}
           />
         </div>
@@ -153,7 +147,6 @@ export default function CharacterForm({ url, handleSubmit, character, nameprop }
             className="border border-border rounded-lg p-2 w-full bg-input text-foreground"
             type="text"
             id="skill"
-            placeholder="Enter skill"
             value={skill}
           />
         </div>

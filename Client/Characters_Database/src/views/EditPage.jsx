@@ -5,15 +5,18 @@ import { useEffect, useState } from "react";
 import CharacterForm from "../components/CharacterForm";
 
 export default function EditCharacterPage({ url }) {
-  const [character, setCharacter] = useState({});
+  const [character, setCharacter] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
 
   async function fetchCharacter() {
     try {
-      const { data } = await axios.get(`${url}/characters/${id}`);
+      const { data } = await axios.get(`${url}/characters/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.access_token}` }
+      });
       setCharacter(data.character);
     } catch (error) {
+      console.error(error);
       Toastify({
         text: error.response.data.error,
         duration: 2000,
@@ -34,7 +37,7 @@ export default function EditCharacterPage({ url }) {
 
   useEffect(() => {
     fetchCharacter();
-  }, [id]);
+  }, []);
 
   async function handleSubmit(
     e,
@@ -83,6 +86,7 @@ export default function EditCharacterPage({ url }) {
 
       navigate("/");
     } catch (error) {
+      console.error(error);
       Toastify({
         text: error.response.data.error,
         duration: 2000,
@@ -106,7 +110,7 @@ export default function EditCharacterPage({ url }) {
       <CharacterForm
         url={url}
         handleSubmit={handleSubmit}
-        nameprop="Edit Character"
+        nameprop={"Edit Character"}
         character={character}
       />
     </>

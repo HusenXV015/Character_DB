@@ -9,7 +9,7 @@ const authorization = require('../middleware/authorization')
 const errorHandler = require('../middleware/errorHandler');
 
 router.post(`/login`, Usercontroller.login)
-router.post('/google-login', Usercontroller.googleLogin)
+router.post('/google-login', Usercontroller.googleAuth)
 router.post(`/register`, Usercontroller.register),
 
 router.use(authentication)

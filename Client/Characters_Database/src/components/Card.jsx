@@ -28,7 +28,7 @@ export default function Card({ character, url, fetchCharacter }) {
         },
       }).showToast();
 
-      fetchCharacter(); // Panggil fetchCharacter untuk memperbarui data tanpa refresh halaman
+      fetchCharacter(); 
     } catch (error) {
       console.log(error);
       Toastify({

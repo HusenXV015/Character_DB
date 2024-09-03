@@ -1,81 +1,51 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCharacters,
+  setSearchTerm,
+  setSortColumn,
+  setSortOrder,
+  setCurrentPageOriginal,
+  setCurrentPageMoogle,
+} from "../features/characters/characterSlice";
 import Toastify from "toastify-js";
 import pacmanLoad from "../assets/Bean-Eater@1x-1.0s-200px-200px.svg";
 import Card from "../components/Card";
 import CardMoogle from "../components/CardMoogle";
 
 export default function Home({ url }) {
-  const [characters, setCharacters] = useState([]);
-  const [moogleCharacters, setMoogleCharacters] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPageOriginal, setCurrentPageOriginal] = useState(1);
-  const [currentPageMoogle, setCurrentPageMoogle] = useState(1);
-  const charactersPerPage = 6;
+  const dispatch = useDispatch();
 
-  const [pageRange, setPageRange] = useState([1, 5]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortColumn, setSortColumn] = useState("id");
-  const [sortOrder, setSortOrder] = useState("ASC");
-
-  async function fetchCharacter() {
-    try {
-      setLoading(true);
-      const token = localStorage.getItem("access_token");
-      if (!token) {
-        throw new Error("No token found");
-      }
-      const { data: originalData } = await axios.get(`${url}/characters`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const { data: newData } = await axios.get(
-        "https://www.moogleapi.com/api/v1/characters"
-      );
-
-      setCharacters(originalData.characters);
-      setMoogleCharacters(newData);
-    } catch (error) {
-      Toastify({
-        text: error.response?.data?.error || "Fetch character error",
-        duration: 2000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-          background: "#EF4C54",
-          color: "#17202A",
-          boxShadow: "0 5px 10px black",
-          fontWeight: "bold",
-        },
-      }).showToast();
-    } finally {
-      setLoading(false);
-    }
-  }
+  const {
+    originalCharacters,
+    moogleCharacters,
+    loading,
+    searchTerm,
+    sortColumn,
+    sortOrder,
+    currentPageOriginal,
+    currentPageMoogle,
+    charactersPerPage,
+  } = useSelector((state) => state.characters);
 
   useEffect(() => {
-    fetchCharacter();
-  }, []);
+    dispatch(fetchCharacters(url));
+  }, [dispatch, url]);
 
   function handleSearch(e) {
-    setSearchTerm(e.target.value);
+    dispatch(setSearchTerm(e.target.value));
   }
 
   function handleSort(e) {
     const { id, value } = e.target;
     if (id === "sortColumn") {
-      setSortColumn(value);
+      dispatch(setSortColumn(value));
     } else if (id === "sortOrder") {
-      setSortOrder(value);
+      dispatch(setSortOrder(value));
     }
   }
 
-  const filteredCharactersOriginal = characters
+  const filteredCharactersOriginal = originalCharacters
     .filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -100,7 +70,8 @@ export default function Home({ url }) {
     });
 
   const indexOfLastCharacterOriginal = currentPageOriginal * charactersPerPage;
-  const indexOfFirstCharacterOriginal = indexOfLastCharacterOriginal - charactersPerPage;
+  const indexOfFirstCharacterOriginal =
+    indexOfLastCharacterOriginal - charactersPerPage;
   const currentCharactersOriginal = filteredCharactersOriginal.slice(
     indexOfFirstCharacterOriginal,
     indexOfLastCharacterOriginal
@@ -121,38 +92,33 @@ export default function Home({ url }) {
   );
 
   function goToNextPageOriginal() {
-    setCurrentPageOriginal((prev) => Math.min(prev + 1, totalPagesOriginal));
+    dispatch(
+      setCurrentPageOriginal(
+        Math.min(currentPageOriginal + 1, totalPagesOriginal)
+      )
+    );
   }
 
   function goToPreviousPageOriginal() {
-    setCurrentPageOriginal((prev) => Math.max(prev - 1, 1));
+    dispatch(setCurrentPageOriginal(Math.max(currentPageOriginal - 1, 1)));
   }
 
   function goToPageOriginal(page) {
-    setCurrentPageOriginal(page);
+    dispatch(setCurrentPageOriginal(page));
   }
 
   function goToNextPageMoogle() {
-    if (currentPageMoogle === pageRange[1]) {
-      setPageRange([pageRange[0] + 5, pageRange[1] + 5]);
-    }
-    setCurrentPageMoogle((prev) => Math.min(prev + 1, totalPagesMoogle));
+    dispatch(
+      setCurrentPageMoogle(Math.min(currentPageMoogle + 1, totalPagesMoogle))
+    );
   }
 
   function goToPreviousPageMoogle() {
-    if (currentPageMoogle === pageRange[0] && pageRange[0] > 1) {
-      setPageRange([pageRange[0] - 5, pageRange[1] - 5]);
-    }
-    setCurrentPageMoogle((prev) => Math.max(prev - 1, 1));
+    dispatch(setCurrentPageMoogle(Math.max(currentPageMoogle - 1, 1)));
   }
 
   function goToPageMoogle(page) {
-    setCurrentPageMoogle(page);
-    if (page >= pageRange[1]) {
-      setPageRange([pageRange[0] + 5, pageRange[1] + 5]);
-    } else if (page < pageRange[0]) {
-      setPageRange([pageRange[0] - 5, pageRange[1] - 5]);
-    }
+    dispatch(setCurrentPageMoogle(page));
   }
 
   return (
@@ -205,7 +171,7 @@ export default function Home({ url }) {
                   key={character.id}
                   character={character}
                   url={url}
-                  fetchCharacter={fetchCharacter}
+                  fetchCharacter={() => dispatch(fetchCharacters(url))}
                 />
               ))}
             </main>
@@ -253,23 +219,19 @@ export default function Home({ url }) {
               >
                 &lt;
               </button>
-              {[...Array(totalPagesMoogle)].map(
-                (_, index) =>
-                  index + 1 >= pageRange[0] &&
-                  index + 1 <= pageRange[1] && (
-                    <button
-                      key={index + 1}
-                      className={`p-2 border border-gray-300 rounded-full mr-2 ${
-                        currentPageMoogle === index + 1
-                          ? "bg-gray-800 text-white"
-                          : ""
-                      }`}
-                      onClick={() => goToPageMoogle(index + 1)}
-                    >
-                      {index + 1}
-                    </button>
-                  )
-              )}
+              {[...Array(totalPagesMoogle)].map((_, index) => (
+                <button
+                  key={index + 1}
+                  className={`p-2 border border-gray-300 rounded-full mr-2 ${
+                    currentPageMoogle === index + 1
+                      ? "bg-gray-800 text-white"
+                      : ""
+                  }`}
+                  onClick={() => goToPageMoogle(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
               <button
                 className="p-2 border border-gray-300 rounded-full"
                 onClick={goToNextPageMoogle}

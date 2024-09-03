@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Toastify from 'toastify-js';
 
-export default function CardMoogle({ character, fetchCharacter }) {
+export default function CardMoogle({ character }) {
   const navigate = useNavigate();
   function handleDetail(id) {
     navigate(`/moogle-characters/${id}`);
@@ -34,7 +34,7 @@ export default function CardMoogle({ character, fetchCharacter }) {
         </button>
         <button
           className="bg-red-500 text-white py-2 px-4 rounded-full"
-          onClick={() => handleDelete(character.id)}
+          onClick={() => handleDelete(moogleCharacter.id)}
         >
           Delete
         </button>

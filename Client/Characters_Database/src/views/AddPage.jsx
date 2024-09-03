@@ -18,17 +18,17 @@ export default function CharactersForm({ url }) {
     weapon
   ) {
     e.preventDefault();
+    const dataAdded = {
+      name,
+      gender,
+      gameName,
+      gameId,
+      description,
+      imgUrl,
+      skill,
+      weapon,
+    };
     try {
-      const dataAdded = {
-        name,
-        gender,
-        gameName,
-        gameId,
-        description,
-        imgUrl,
-        skill,
-        weapon,
-      };
       await axios.post(
         `${url}/characters/add`,
         dataAdded,
