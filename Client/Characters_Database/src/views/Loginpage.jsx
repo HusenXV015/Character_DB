@@ -82,80 +82,108 @@ export default function LoginPage({ url }) {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen rounded-xl">
-        <div className="w-full p-6 m-auto rounded-lg shadow-md lg:max-w-lg bg-base-200">
-          <form
-            className="bg-orange-300 shadow-md rounded-xl px-12 pt-12 pb-12 mb-12"
-            onSubmit={handleLogin}
-          >
-            <div className="flex justify-center mb-4">
-              <h1 className="font-bold text-2xl">Log In</h1>
-            </div>
-            <h2 className="text-white text-center text-xl font-bold mb-4">
-              Sign in to your account
+      <body class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white rounded-lg shadow-lg flex w-3/4 max-w-4xl">
+          <div class="w-1/2 p-10">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">
+              Login to your Account
             </h2>
-            <div className="mb-4">
-              <label
-                className="block text-white text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Your email
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                placeholder="Enter Your Email"
-                onChange={emailOnChange}
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                className="block text-white text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="Enter Your Password"
-                onChange={passwordOnChange}
-              />
-              <a
-                className="inline-block align-baseline font-bold text-sm text-orange-500 hover:text-orange-700"
-                href="#"
-              >
-                Forgot password?
-              </a>
-            </div>
-            <div className="flex items-center justify-between">
+            <p class="text-gray-500 mb-8">Welcome back!</p>
+            <form onSubmit={handleLogin}>
+              <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-medium mb-2">
+                  <svg
+                    class="inline-block w-5 h-5 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 12l-4-4m0 0l-4 4m4-4v12"
+                    ></path>
+                  </svg>
+                  Email
+                </label>
+                <input
+                  onChange={emailOnChange}
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="password"
+                  class="block text-gray-700 font-medium mb-2"
+                >
+                  <svg
+                    class="inline-block w-5 h-5 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 12l-4-4m0 0l-4 4m4-4v12"
+                    ></path>
+                  </svg>
+                  Password
+                </label>
+                <input
+                  onChange={passwordOnChange}
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
               <button
                 type="submit"
-                className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600"
               >
-                Sign in
+                LOG IN
               </button>
-            </div>
-            <p className="text-center text-gray-500 text-xs mt-4">
-              Don't have an account yet?{" "}
+            </form>
+            <p class="mt-6 text-gray-500 text-center">
+              Don't have an account?{" "}
               <Link to="/register">
-              <a
-                href="/register"
-                className="text-orange-500 hover:text-orange-700 font-bold"
-              >
-                Sign up
+              <a href="#" class="text-blue-500 hover:underline">
+                Create an account
               </a>
               </Link>
             </p>
-            <div className="divider px-10">OR</div>
+            <div className="divider px-10 text-center">OR</div>
             <div className="mt-6 flex justify-center items-center">
               <GoogleLogin onSuccess={googleLogin} />
             </div>
-          </form>
+          </div>
+          <div class="w-1/2 bg-blue-500 text-white flex items-center justify-center rounded-r-lg">
+            <div class="p-10">
+              <div class="flex justify-center mb-6">
+                <img
+                  src="https://image.similarpng.com/very-thumbnail/2021/08/Gaming-logo-design-template-on-transparent-background-PNG.png"
+                  alt="Illustration"
+                  class="w-40 h-40"
+                />
+              </div>
+              <h3 class="text-2xl font-semibold mb-2">
+                Connect with any device.
+              </h3>
+              <p class="text-center">
+                Everything you need is an internet connection.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </body>
     </>
   );
 }

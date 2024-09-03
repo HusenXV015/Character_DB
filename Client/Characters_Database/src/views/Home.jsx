@@ -8,7 +8,6 @@ import {
   setCurrentPageOriginal,
   setCurrentPageMoogle,
 } from "../features/characters/characterSlice";
-import Toastify from "toastify-js";
 import pacmanLoad from "../assets/Bean-Eater@1x-1.0s-200px-200px.svg";
 import Card from "../components/Card";
 import CardMoogle from "../components/CardMoogle";
@@ -91,6 +90,8 @@ export default function Home({ url }) {
     filteredCharactersMoogle.length / charactersPerPage
   );
 
+  const totalPageButtons = 10; // Display 10 page buttons at a time
+
   function goToNextPageOriginal() {
     dispatch(
       setCurrentPageOriginal(
@@ -120,6 +121,12 @@ export default function Home({ url }) {
   function goToPageMoogle(page) {
     dispatch(setCurrentPageMoogle(page));
   }
+
+  const startPageOriginal = Math.floor((currentPageOriginal - 1) / totalPageButtons) * totalPageButtons + 1;
+  const endPageOriginal = Math.min(startPageOriginal + totalPageButtons - 1, totalPagesOriginal);
+
+  const startPageMoogle = Math.floor((currentPageMoogle - 1) / totalPageButtons) * totalPageButtons + 1;
+  const endPageMoogle = Math.min(startPageMoogle + totalPageButtons - 1, totalPagesMoogle);
 
   return (
     <>
@@ -183,17 +190,17 @@ export default function Home({ url }) {
               >
                 &lt;
               </button>
-              {[...Array(totalPagesOriginal)].map((_, index) => (
+              {[...Array(endPageOriginal - startPageOriginal + 1)].map((_, index) => (
                 <button
-                  key={index + 1}
+                  key={index + startPageOriginal}
                   className={`p-2 border border-gray-300 rounded-full mr-2 ${
-                    currentPageOriginal === index + 1
+                    currentPageOriginal === index + startPageOriginal
                       ? "bg-gray-800 text-white"
                       : ""
                   }`}
-                  onClick={() => goToPageOriginal(index + 1)}
+                  onClick={() => goToPageOriginal(index + startPageOriginal)}
                 >
-                  {index + 1}
+                  {index + startPageOriginal}
                 </button>
               ))}
               <button
@@ -219,17 +226,17 @@ export default function Home({ url }) {
               >
                 &lt;
               </button>
-              {[...Array(totalPagesMoogle)].map((_, index) => (
+              {[...Array(endPageMoogle - startPageMoogle + 1)].map((_, index) => (
                 <button
-                  key={index + 1}
+                  key={index + startPageMoogle}
                   className={`p-2 border border-gray-300 rounded-full mr-2 ${
-                    currentPageMoogle === index + 1
+                    currentPageMoogle === index + startPageMoogle
                       ? "bg-gray-800 text-white"
                       : ""
                   }`}
-                  onClick={() => goToPageMoogle(index + 1)}
+                  onClick={() => goToPageMoogle(index + startPageMoogle)}
                 >
-                  {index + 1}
+                  {index + startPageMoogle}
                 </button>
               ))}
               <button
