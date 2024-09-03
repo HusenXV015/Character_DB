@@ -1,15 +1,32 @@
-
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Toastify from "toastify-js";
 import pacmanLoad from "../assets/Bean-Eater@1x-1.0s-200px-200px.svg";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function Detail({ url }) {
   const [characters, setCharacter] = useState({});
   const [loading, setLoading] = useState(false);
+  const [originDescription, setOriginDescription] = useState(''); // New state for origin description
   const { id } = useParams();
+
+  async function fetchOriginDescription(characterName) {
+    try {
+      const genAI = new GoogleGenerativeAI("AIzaSyCZP4JN-TYoyNarV2v7ZCdHU35l_dlffAU");
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const prompt = `Explain the origin of the character ${characterName} in detail.`;
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = await response.text();
+
+      setOriginDescription(text);
+    } catch (error) {
+      console.error('Error fetching origin description:', error);
+      setOriginDescription('Could not fetch the origin description.');
+    }
+  }
 
   async function bioCharacter() {
     try {
@@ -21,6 +38,9 @@ export default function Detail({ url }) {
         },
       });
       setCharacter(data.characters);
+      if (data.characters && data.characters.name) {
+        await fetchOriginDescription(data.characters.name); // Fetch origin description
+      }
     } catch (error) {
       console.log(error);
       Toastify({
@@ -70,11 +90,6 @@ export default function Detail({ url }) {
                 <p className="mt-4 text-gray-600 text-lg">
                   {characters.description}
                 </p>
-                <div className="mt-8">
-                  <a className="text-blue-500 hover:text-blue-600 font-medium">
-                    User ID: {characters.userId}
-                  </a>
-                </div>
               </div>
               <div className="mt-12 md:mt-0">
                 <img
@@ -84,6 +99,9 @@ export default function Detail({ url }) {
                 />
               </div>
             </div>
+            <div className="mt-8">
+                <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description:</strong> {originDescription || 'Fetching origin description...'}</p>
+                </div>
           </div>
         </section>
       )}

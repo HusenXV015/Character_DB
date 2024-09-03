@@ -8,12 +8,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function DetailMoogle() {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [originDescription, setOriginDescription] = useState(''); // New state for origin description
+  const [originDescription, setOriginDescription] = useState(''); 
   const { id } = useParams();
 
   async function fetchOriginDescription(characterName) {
     try {
-      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const genAI = new GoogleGenerativeAI("AIzaSyCZP4JN-TYoyNarV2v7ZCdHU35l_dlffAU");
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       const prompt = `Explain the origin of the character ${characterName} in detail.`;
 
@@ -93,7 +93,6 @@ export default function DetailMoogle() {
             <p className="text-base font-extrabold text-black sm:text-base">Weight: {character.weight || 'Unknown'}</p>
             <p className="text-base font-extrabold text-black sm:text-base">Origin: {character.origin || 'Unknown'}</p>
             <p className="mt-4 text-gray-600 text-lg">{character.description || 'No description available.'}</p>
-            <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description:</strong> {originDescription || 'Fetching origin description...'}</p>
           </div>
           <div className="mt-12 md:mt-0">
             {character.pictures && character.pictures.length > 0 ? (
@@ -107,6 +106,9 @@ export default function DetailMoogle() {
             )}
           </div>
         </div>
+        <div className="mt-8">
+                <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description:</strong> {originDescription || 'Fetching origin description...'}</p>
+                </div>
       </div>
     </section>
   );
