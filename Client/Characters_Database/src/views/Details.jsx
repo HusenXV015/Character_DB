@@ -87,9 +87,11 @@ export default function Detail({ url }) {
                 <p className="text-base font-extrabold text-black sm:text-base">Game Id: {characters.gameId}</p>
                 <p className="text-base font-extrabold text-black sm:text-base">Skill: {characters.skill}</p>
                 <p className="text-base font-extrabold text-black sm:text-base">Weapon: {characters.weapon}</p>
+                <div className="bg-zinc-300 rounded-xl shadow-xl">
                 <p className="mt-4 text-gray-600 text-lg">
                   {characters.description}
                 </p>
+                </div>
               </div>
               <div className="mt-12 md:mt-0">
                 <img
@@ -99,7 +101,7 @@ export default function Detail({ url }) {
                 />
               </div>
             </div>
-            <div className="mt-8">
+            <div className="mt-8 bg-slate-300 shadow-xl rounded-md">
                 <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description:</strong> {originDescription || 'Fetching origin description...'}</p>
                 </div>
           </div>
