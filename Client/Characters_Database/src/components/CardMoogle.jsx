@@ -26,18 +26,6 @@ export default function CardMoogle({ character }) {
         >
           Detail
         </button>
-        <button
-          className="bg-green-500 text-white py-2 px-4 rounded-full"
-          onClick={() => handleEdit(character.id)}
-        >
-          Edit
-        </button>
-        <button
-          className="bg-red-500 text-white py-2 px-4 rounded-full"
-          onClick={() => handleDelete(moogleCharacter.id)}
-        >
-          Delete
-        </button>
       </div>
     </div>
   );
