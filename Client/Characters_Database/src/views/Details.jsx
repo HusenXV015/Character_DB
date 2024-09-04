@@ -8,7 +8,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function Detail({ url }) {
   const [characters, setCharacter] = useState({});
   const [loading, setLoading] = useState(false);
-  const [originDescription, setOriginDescription] = useState(''); // New state for origin description
+  const [originDescription, setOriginDescription] = useState(''); // Full origin description text
+  const [displayedText, setDisplayedText] = useState(''); // Text being displayed as typed
   const { id } = useParams();
 
   async function fetchOriginDescription(characterName) {
@@ -27,6 +28,22 @@ export default function Detail({ url }) {
       setOriginDescription('Could not fetch the origin description.');
     }
   }
+
+  useEffect(() => {
+    if (originDescription) {
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        if (index < originDescription.length) {
+          setDisplayedText((prev) => prev + originDescription.charAt(index));
+          index++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 50); // Adjust the speed of the typing effect here (in milliseconds)
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [originDescription]);
 
   async function bioCharacter() {
     try {
@@ -102,8 +119,8 @@ export default function Detail({ url }) {
               </div>
             </div>
             <div className="mt-8 bg-slate-300 shadow-xl rounded-md">
-                <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description:</strong> {originDescription || 'Fetching origin description...'}</p>
-                </div>
+              <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description : </strong> {displayedText || 'Fetching origin description...'}</p>
+            </div>
           </div>
         </section>
       )}

@@ -9,6 +9,7 @@ export default function DetailMoogle() {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [originDescription, setOriginDescription] = useState("");
+  const [typedDescription, setTypedDescription] = useState(""); // State for typed effect
   const { id } = useParams();
 
   async function fetchOriginDescription(characterName) {
@@ -29,6 +30,22 @@ export default function DetailMoogle() {
       setOriginDescription("Could not fetch the origin description.");
     }
   }
+
+  useEffect(() => {
+    if (originDescription) {
+      let currentText = "";
+      let index = 0;
+      const intervalId = setInterval(() => {
+        currentText += originDescription[index];
+        setTypedDescription(currentText);
+        index++;
+        if (index >= originDescription.length) {
+          clearInterval(intervalId);
+        }
+      }, 50); // Adjust the speed of typing effect here (milliseconds per character)
+      return () => clearInterval(intervalId);
+    }
+  }, [originDescription]);
 
   async function bioCharacter() {
     try {
@@ -139,7 +156,7 @@ export default function DetailMoogle() {
         <div className="mt-8 bg-slate-300 shadow-xl rounded-md">
           <p className="mt-4 text-gray-600 text-lg">
             <strong>Origin Description:</strong>{" "}
-            {originDescription || "Fetching origin description..."}
+            {typedDescription || "Fetching origin description..."}
           </p>
         </div>
       </div>
