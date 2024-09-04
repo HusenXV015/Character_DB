@@ -45,7 +45,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-muted-foreground text-sm text-center md:text-left mr-7">
-              &copy; 2024 Mangko News. All rights reserved.
+              &copy; 2024 Character Game . All rights reserved.
             </p>
           </div>
         </footer>
