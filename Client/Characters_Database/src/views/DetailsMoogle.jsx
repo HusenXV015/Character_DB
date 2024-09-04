@@ -155,7 +155,7 @@ export default function DetailMoogle() {
         </div>
         <div className="mt-8 bg-slate-300 shadow-xl rounded-md">
           <p className="mt-4 text-gray-600 text-lg">
-            <strong>Origin Description :</strong>{" "}
+            <strong>Origin Description : </strong>{" "}
             {typedDescription || "Fetching origin description..."}
           </p>
         </div>
