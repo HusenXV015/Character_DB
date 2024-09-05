@@ -9,7 +9,7 @@ export default function DetailMoogle() {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [originDescription, setOriginDescription] = useState("");
-  const [typedDescription, setTypedDescription] = useState(""); // State for typed effect
+  const [typedDescription, setTypedDescription] = useState(""); 
   const { id } = useParams();
 
   async function fetchOriginDescription(characterName) {

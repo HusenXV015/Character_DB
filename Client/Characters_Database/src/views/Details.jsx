@@ -12,11 +12,11 @@ export default function Detail({ url }) {
   const [displayedText, setDisplayedText] = useState(''); // Text being displayed as typed
   const { id } = useParams();
 
-  async function fetchOriginDescription(characterName) {
+  async function fetchOriginDescription(characterName,characterGameName) {
     try {
       const genAI = new GoogleGenerativeAI("AIzaSyCZP4JN-TYoyNarV2v7ZCdHU35l_dlffAU");
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const prompt = `Explain the origin of the character ${characterName} in detail.`;
+      const prompt = `Explain the origin of the character ${characterName} from ${characterGameName} in detail.`;
 
       const result = await model.generateContent(prompt);
       const response = await result.response;
@@ -56,7 +56,7 @@ export default function Detail({ url }) {
       });
       setCharacter(data.characters);
       if (data.characters && data.characters.name) {
-        await fetchOriginDescription(data.characters.name); // Fetch origin description
+        await fetchOriginDescription(data.characters.name, data.characters.gameName); // Fetch origin description
       }
     } catch (error) {
       console.log(error);
@@ -119,7 +119,7 @@ export default function Detail({ url }) {
               </div>
             </div>
             <div className="mt-8 bg-slate-300 shadow-xl rounded-md">
-              <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description : </strong> {displayedText || 'Fetching origin description...'}</p>
+              <p className="mt-4 text-gray-600 text-lg"><strong>Origin Description : </strong> { displayedText || 'Fetching origin description...'}</p>
             </div>
           </div>
         </section>

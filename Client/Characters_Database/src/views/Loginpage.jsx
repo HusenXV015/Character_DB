@@ -171,7 +171,7 @@ export default function LoginPage({ url }) {
                 <img
                   src="https://image.similarpng.com/very-thumbnail/2021/08/Gaming-logo-design-template-on-transparent-background-PNG.png"
                   alt="Illustration"
-                  class="w-40 h-40"
+                  class="w-40 h-40 rounded-full"
                 />
               </div>
               <h3 class="text-2xl font-semibold mb-2">
