@@ -9,7 +9,7 @@ beforeAll(async () => {
   
     const users = require('../data/users.json');
     const games = require('../data/games.json');
-    const characters = require('../data/characters.json');
+    const characters = require('../data/character.json');
 
 
     users.forEach(el => {
