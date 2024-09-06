@@ -9,7 +9,7 @@ import EditPage from "../views/EditPage";
 import DetailMoogle from "../views/DetailsMoogle";
 import Register from "../views/Registers";
 
-const url = "http://localhost:3000";
+const url = "http://bagusbagusaja.online";
 
 const router = createBrowserRouter([
   {
