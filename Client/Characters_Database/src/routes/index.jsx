@@ -9,7 +9,7 @@ import EditPage from "../views/EditPage";
 import DetailMoogle from "../views/DetailsMoogle";
 import Register from "../views/Registers";
 
-const url = "http://bagusbagusaja.online";
+const url = "https://bagusbagusaja.online";
 
 const router = createBrowserRouter([
   {
