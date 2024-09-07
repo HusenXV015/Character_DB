@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCharacters,
+  fetchAsync,
   setSearchTerm,
   setSortColumn,
   setSortOrder,
@@ -27,8 +27,9 @@ export default function Home({ url }) {
     charactersPerPage,
   } = useSelector((state) => state.characters);
 
+  // Fetch characters when component mounts
   useEffect(() => {
-    dispatch(fetchCharacters(url));
+    dispatch(fetchAsync(url));
   }, [dispatch, url]);
 
   function handleSearch(e) {
@@ -44,6 +45,7 @@ export default function Home({ url }) {
     }
   }
 
+  // Filtering and sorting for original characters
   const filteredCharactersOriginal = originalCharacters
     .filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -56,6 +58,7 @@ export default function Home({ url }) {
       }
     });
 
+  // Filtering and sorting for Moogle API characters
   const filteredCharactersMoogle = moogleCharacters
     .filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -68,6 +71,7 @@ export default function Home({ url }) {
       }
     });
 
+  // Pagination logic for original characters
   const indexOfLastCharacterOriginal = currentPageOriginal * charactersPerPage;
   const indexOfFirstCharacterOriginal =
     indexOfLastCharacterOriginal - charactersPerPage;
@@ -79,6 +83,7 @@ export default function Home({ url }) {
     filteredCharactersOriginal.length / charactersPerPage
   );
 
+  // Pagination logic for Moogle characters
   const indexOfLastCharacterMoogle = currentPageMoogle * charactersPerPage;
   const indexOfFirstCharacterMoogle =
     indexOfLastCharacterMoogle - charactersPerPage;
@@ -90,8 +95,9 @@ export default function Home({ url }) {
     filteredCharactersMoogle.length / charactersPerPage
   );
 
-  const totalPageButtons = 10; // Display 10 page buttons at a time
+  const totalPageButtons = 10; 
 
+  // Pagination functions for original characters
   function goToNextPageOriginal() {
     dispatch(
       setCurrentPageOriginal(
@@ -108,6 +114,7 @@ export default function Home({ url }) {
     dispatch(setCurrentPageOriginal(page));
   }
 
+  // Pagination functions for Moogle characters
   function goToNextPageMoogle() {
     dispatch(
       setCurrentPageMoogle(Math.min(currentPageMoogle + 1, totalPagesMoogle))
@@ -131,6 +138,7 @@ export default function Home({ url }) {
   return (
     <>
       <div id="PAGE-HOME" className="p-3">
+        {/* Search Input */}
         <form action="" method="get" className="flex justify-center mt-4">
           <input
             type="search"
@@ -142,6 +150,7 @@ export default function Home({ url }) {
           />
         </form>
 
+        {/* Sorting Options */}
         <div className="flex justify-center mt-4">
           <label htmlFor="sortColumn" className="mr-2">
             Sort By:
@@ -165,12 +174,14 @@ export default function Home({ url }) {
           </select>
         </div>
 
+        {/* Loading Spinner */}
         {loading ? (
           <div className="mt-32 flex justify-center items-center">
             <img src={pacmanLoad} alt="Loading" />
           </div>
         ) : (
           <>
+            {/* Original Characters */}
             <h2 className="text-2xl font-bold mt-8">Original Characters</h2>
             <main className="grid grid-cols-3 gap-5 px-10 my-8 bg-white">
               {currentCharactersOriginal.map((character) => (
@@ -178,10 +189,11 @@ export default function Home({ url }) {
                   key={character.id}
                   character={character}
                   url={url}
-                  fetchCharacter={() => dispatch(fetchCharacters(url))}
+                  fetchCharacter={() => dispatch(fetchAsync(url))}
                 />
               ))}
             </main>
+            {/* Pagination for Original Characters */}
             <div className="flex justify-center my-4">
               <button
                 className="p-2 border border-gray-300 rounded-full mr-2"
@@ -212,12 +224,14 @@ export default function Home({ url }) {
               </button>
             </div>
 
+            {/* Moogle API Characters */}
             <h2 className="text-2xl font-bold mt-8">Moogle API Characters</h2>
             <main className="grid grid-cols-3 gap-5 px-10 my-8 bg-white">
               {currentCharactersMoogle.map((character) => (
                 <CardMoogle key={character.id} character={character} />
               ))}
             </main>
+            {/* Pagination for Moogle Characters */}
             <div className="flex justify-center my-4">
               <button
                 className="p-2 border border-gray-300 rounded-full mr-2"
